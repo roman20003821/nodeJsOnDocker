@@ -6,7 +6,7 @@ jobs:
    deploy:
       runs-on: ubuntu-latest
       env:
-         docker-image-version: ${{date +%s}}
+         docker-image-version: ${{$(date +%s)}}
       steps:
          - name: Checkout
            uses: actions/checkout@v3
