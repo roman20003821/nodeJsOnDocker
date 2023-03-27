@@ -5,6 +5,8 @@ on: workflow_dispatch
 jobs:
    deploy:
       runs-on: ubuntu-latest
+      env:
+         docker-image-version: $(date +%s)
       steps:
          - name: Checkout
            uses: actions/checkout@v3
@@ -17,6 +19,6 @@ jobs:
          - name: Lint
            run: npm run lint
          - name: Build the Docker image
-           run: docker build . -t roman20003821/node-js-on-docker:$(date +%s)
+           run: docker build . -t roman20003821/node-js-on-docker:${env.docker-image-version}
          - name: Publish the image to Docker Hub
-           run: docker push roman20003821/node-js-on-docker
+           run: docker push roman20003821/node-js-on-docker:${env.docker-image-version}
