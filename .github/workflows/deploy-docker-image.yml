@@ -1,0 +1,19 @@
+name: Deploy Docker Image
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+     runs-on: ubuntu-latest
+     steps:
+     - name: Lint
+     - uses: actions/checkout@v3
+     - uses: actions/setup-node@v3
+       with:
+          node-version: '18'
+     - run: npm ci
+     - run: npm lint
+     - name: Build the Docker image
+       run: docker build . -t roman20003821/node-js-on-docker:$(date +%s)
+     - name: Publish the image to Docker Hub
+       run: docker push roman20003821/node-js-on-docker
