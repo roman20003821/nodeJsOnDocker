@@ -19,6 +19,6 @@ jobs:
          - name: Lint
            run: npm run lint
          - name: Build the Docker image
-           run: docker build . -t roman20003821/node-js-on-docker:$docker-image-version
+           run: docker build . -t roman20003821/node-js-on-docker:${{docker-image-version}}
          - name: Publish the image to Docker Hub
-           run: docker push roman20003821/node-js-on-docker:$docker-image-version
+           run: docker push roman20003821/node-js-on-docker:${{docker-image-version}}
