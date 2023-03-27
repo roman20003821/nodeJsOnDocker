@@ -17,7 +17,7 @@ jobs:
          - name: Lint
            run: npm run lint
          - name: Generate image version
-           run: "::set-output name=docker-image-version::$(date +%s)"
+           run: echo "::set-output name=docker-image-version::$(date +%s)"
            id: version
          - name: Build the Docker image
            run: docker build . -t roman20003821/node-js-on-docker:${{ steps.version.docker-image-version }}
